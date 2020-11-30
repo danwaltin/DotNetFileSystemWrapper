@@ -6,8 +6,10 @@ namespace DotNetFileSystemWrapper.Tests.File
 {
     public class ExistsTests : IDisposable {
         private IFileSystem _fs;
+		private string _rootPath;
 
         public ExistsTests() {
+			_rootPath = System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "TestRoot", Guid.NewGuid().ToString());
             AssureRootPathExists();
             _fs = new FileSystemFactory().PhysicalFileSystem();
         }
@@ -16,15 +18,15 @@ namespace DotNetFileSystemWrapper.Tests.File
             ClearRootPath();
         }
 
-        private static string RootPath() {
-            return System.IO.Path.Combine(System.IO.Directory.GetCurrentDirectory(), "TestRoot");
+        private string RootPath() {
+            return _rootPath;
         }
 
-        private static void AssureRootPathExists() {
+        private void AssureRootPathExists() {
             System.IO.Directory.CreateDirectory(RootPath());            
         }
 
-        private static void ClearRootPath() {
+        private void ClearRootPath() {
             System.IO.Directory.Delete(RootPath(), recursive: true);
         }
 
