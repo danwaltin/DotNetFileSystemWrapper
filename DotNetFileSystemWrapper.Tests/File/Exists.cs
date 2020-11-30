@@ -1,7 +1,7 @@
 using Xunit;
-using src;
+using DotNetFileSystemWrapper;
 
-namespace tests.File
+namespace DotNetFileSystemWrapper.Tests.File
 {
     public class ExistsTests {
         private string RootPath() {
@@ -31,8 +31,6 @@ namespace tests.File
             var exists = fileSystem.File.Exists(path);
 
             Assert.True(exists);
-
         }
-
     }
 }

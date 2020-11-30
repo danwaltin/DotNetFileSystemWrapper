@@ -1,7 +1,13 @@
 ﻿using System;
 
-namespace src
+namespace DotNetFileSystemWrapper
 {
+    public class FileSystemFactory
+    {
+        public IFileSystem PhysicalFileSystem() =>
+            new PhysicalFileSystem();
+    }
+
     public interface IFileSystem {
         IFile File {get;}
     }
@@ -9,12 +15,6 @@ namespace src
     public interface IFile {
         bool Exists(string path);
         void WriteAllText(string path, string contents);
-    }
-
-    public class FileSystemFactory
-    {
-        public IFileSystem PhysicalFileSystem() =>
-            new PhysicalFileSystem();
     }
 
     internal class PhysicalFileSystem : IFileSystem
