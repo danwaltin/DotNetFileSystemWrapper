@@ -8,6 +8,7 @@ namespace src
 
     public interface IFile {
         bool Exists(string path);
+        void WriteAllText(string path, string contents);
     }
 
     public class FileSystemFactory
@@ -22,7 +23,11 @@ namespace src
         {
             public bool Exists(string path)
             {
-                return false;
+                return System.IO.File.Exists(path);
+            }
+
+            public void WriteAllText(string path, string contents) {
+                System.IO.File.WriteAllText(path, contents);
             }
         }
         public IFile File => new PhysicalFile();
