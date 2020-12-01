@@ -22,6 +22,7 @@ namespace DotNetFileSystemWrapper {
         void AppendAllLines(string path, IEnumerable<string> contents);
 		
         string ReadAllText(string path);
+        string[] ReadAllLines(string path);
 	}
 
 	internal class PhysicalFileSystem : IFileSystem {
@@ -43,6 +44,9 @@ namespace DotNetFileSystemWrapper {
 
 			public string ReadAllText(string path) =>
 				System.IO.File.ReadAllText(path);
+
+			public string[] ReadAllLines(string path) =>
+				System.IO.File.ReadAllLines(path);
 		}
 
 		public IFile File => new PhysicalFile();
