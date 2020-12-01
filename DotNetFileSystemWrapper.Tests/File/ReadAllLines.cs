@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite {
+namespace DotNetFileSystemWrapper.Tests.File {
 	public class ReadAllLinesTests : TestBase {
 		[Fact]
 		public void ReadAllLinesFromAnEmptyFile() {
@@ -8,7 +8,7 @@ namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite {
 
 			var content = _fs.File.ReadAllText(Path("theFile.txt"));
 
-			Assert.Equal(0, content.Length);
+			Assert.Empty(content);
 		}
 
 		[Fact]
@@ -16,7 +16,7 @@ namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite {
 			_fs.File.WriteAllText(Path("theFile.txt"), $"{System.Environment.NewLine}");
 
 			var content = _fs.File.ReadAllLines(Path("theFile.txt"));
-			Assert.Equal(1, content.Length);
+			Assert.Single(content);
 			Assert.Equal("", content[0]);
 		}
 
@@ -25,7 +25,7 @@ namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite {
 			_fs.File.WriteAllText(Path("theFile.txt"), "the text");
 
 			var content = _fs.File.ReadAllLines(Path("theFile.txt"));
-			Assert.Equal(1, content.Length);
+			Assert.Single(content);
 			Assert.Equal("the text", content[0]);
 		}
 
