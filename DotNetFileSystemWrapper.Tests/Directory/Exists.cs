@@ -9,7 +9,6 @@ namespace DotNetFileSystemWrapper.Tests.Directory {
 			Assert.False(exists);
 		}
 
-
 		[Fact]
 		public void ExistingDirectoryShouldReturnTrue() {
 			CreateDirectory(Path("directory_name"));

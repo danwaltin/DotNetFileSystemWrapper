@@ -15,11 +15,16 @@ namespace DotNetFileSystemWrapper {
 
 	public interface IDirectory {
 		void CreateDirectory(string path);
+
 		bool Exists(string path);
+		
+		void Delete(string path);
+		void Delete(string path, bool recursive);
 	}
 
 	public interface IFile {
 		bool Exists(string path);
+
 		void Delete(string path);
 
 		void WriteAllText(string path, string contents);
@@ -44,6 +49,12 @@ namespace DotNetFileSystemWrapper {
 
 			public bool Exists(string path) =>
 				System.IO.Directory.Exists(path);
+
+			public void Delete(string path) =>
+				System.IO.Directory.Delete(path);
+
+			public void Delete(string path, bool recursive) =>
+				System.IO.Directory.Delete(path, recursive);
 		}
 
 		private class PhysicalFile : IFile {
