@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Xunit;
 
-namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite {
+namespace DotNetFileSystemWrapper.Tests.File {
 	public class WriteAllLinesTests : TestBase {
 		[Fact]
 		public void WriteAllLinesToANewFile() {

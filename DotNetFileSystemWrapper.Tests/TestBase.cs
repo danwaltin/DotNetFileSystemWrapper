@@ -28,5 +28,8 @@ namespace DotNetFileSystemWrapper.Tests {
 		/// </summary>
 		protected string Path(string filename) =>
 			System.IO.Path.Combine(RootPath(), filename);
+
+		protected string Path(string folder, string filename) =>
+			System.IO.Path.Combine(RootPath(), folder, filename);
 	}
 }

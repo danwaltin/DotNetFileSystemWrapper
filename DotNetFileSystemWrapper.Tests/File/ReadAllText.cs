@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite {
+namespace DotNetFileSystemWrapper.Tests.File {
 	public class ReadAllTextTests : TestBase {
 		[Fact]
 		public void ReadAllTextFromAnEmptyFile() {

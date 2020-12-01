@@ -9,11 +9,17 @@ namespace DotNetFileSystemWrapper {
 
 
 	public interface IFileSystem {
+		IDirectory Directory { get; }
 		IFile File { get; }
+	}
+
+	public interface IDirectory {
+		void CreateDirectory(string path);
 	}
 
 	public interface IFile {
 		bool Exists(string path);
+		void Delete(string path);
 
 		void WriteAllText(string path, string contents);
         void WriteAllLines(string path, IEnumerable<string> contents);
@@ -26,9 +32,21 @@ namespace DotNetFileSystemWrapper {
 	}
 
 	internal class PhysicalFileSystem : IFileSystem {
+		public IDirectory Directory => new PhysicalDirectory();
+		public IFile File => new PhysicalFile();
+
+		private class PhysicalDirectory : IDirectory {
+			public void CreateDirectory(string path) {
+				System.IO.Directory.CreateDirectory(path);
+			}
+		}
+
 		private class PhysicalFile : IFile {
 			public bool Exists(string path) =>
 				System.IO.File.Exists(path);
+
+			public void Delete(string path) =>
+				System.IO.File.Delete(path);
 
 			public void WriteAllText(string path, string contents) =>
 				System.IO.File.WriteAllText(path, contents);
@@ -49,6 +67,5 @@ namespace DotNetFileSystemWrapper {
 				System.IO.File.ReadAllLines(path);
 		}
 
-		public IFile File => new PhysicalFile();
 	}
 }
