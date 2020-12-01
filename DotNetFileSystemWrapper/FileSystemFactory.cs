@@ -23,12 +23,14 @@ namespace DotNetFileSystemWrapper {
 
 		void WriteAllText(string path, string contents);
         void WriteAllLines(string path, IEnumerable<string> contents);
-        
+        void WriteAllBytes(string path, byte[] contents);
+
         void AppendAllText(string path, string contents);
         void AppendAllLines(string path, IEnumerable<string> contents);
 		
         string ReadAllText(string path);
         string[] ReadAllLines(string path);
+        byte[] ReadAllBytes(string path);
 	}
 
 	internal class PhysicalFileSystem : IFileSystem {
@@ -54,6 +56,9 @@ namespace DotNetFileSystemWrapper {
             public void WriteAllLines(string path, IEnumerable<string> contents) =>
                 System.IO.File.WriteAllLines(path, contents);
 
+            public void WriteAllBytes(string path, byte[] contents) =>
+                System.IO.File.WriteAllBytes(path, contents);
+
 			public void AppendAllText(string path, string contents) =>
 				System.IO.File.AppendAllText(path, contents);
 
@@ -65,6 +70,9 @@ namespace DotNetFileSystemWrapper {
 
 			public string[] ReadAllLines(string path) =>
 				System.IO.File.ReadAllLines(path);
+
+			public byte[] ReadAllBytes(string path) =>
+				System.IO.File.ReadAllBytes(path);
 		}
 
 	}
