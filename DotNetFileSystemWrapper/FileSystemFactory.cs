@@ -15,6 +15,7 @@ namespace DotNetFileSystemWrapper {
 
 	public interface IDirectory {
 		void CreateDirectory(string path);
+		bool Exists(string path);
 	}
 
 	public interface IFile {
@@ -38,9 +39,11 @@ namespace DotNetFileSystemWrapper {
 		public IFile File => new PhysicalFile();
 
 		private class PhysicalDirectory : IDirectory {
-			public void CreateDirectory(string path) {
+			public void CreateDirectory(string path) =>
 				System.IO.Directory.CreateDirectory(path);
-			}
+
+			public bool Exists(string path) =>
+				System.IO.Directory.Exists(path);
 		}
 
 		private class PhysicalFile : IFile {

@@ -24,14 +24,6 @@ namespace DotNetFileSystemWrapper.Tests.File {
 			AssertFileDoesNotExist(Path("folder_two", "name.txt"));
 		}
 
-		private void CreateDirectory(string path) {
-			_fs.Directory.CreateDirectory(path);
-		}
-
-		private void CreateFile(string path) {
-			_fs.File.WriteAllText(path, "content");
-		}
-
 		private void AssertFileDoesNotExist(string path) {
 			Assert.False(_fs.File.Exists(path));
 		}

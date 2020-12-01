@@ -23,6 +23,12 @@ namespace DotNetFileSystemWrapper.Tests {
 		private void ClearRootPath() =>
 			System.IO.Directory.Delete(RootPath(), recursive: true);
 
+		protected void CreateDirectory(string path) =>
+			_fs.Directory.CreateDirectory(path);
+
+		protected void CreateFile(string path) => 
+			_fs.File.WriteAllText(path, "content");
+
 		/// <summary>
 		/// Create a path relative to a root path
 		/// </summary>
