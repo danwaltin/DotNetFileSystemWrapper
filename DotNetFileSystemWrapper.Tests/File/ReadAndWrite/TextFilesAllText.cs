@@ -1,17 +1,14 @@
 using Xunit;
 
-namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite
-{
-	public class TextFilesAllTextTests : TestBase
-	{
+namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite {
+	public class TextFilesAllTextTests : TestBase {
 		[Fact]
-		public void WriteAndReadTextContent()
-		{
+		public void WriteAndReadTextContent() {
 			_fs.File.WriteAllText(Path("theFile.txt"), "the file content");
 			var content = _fs.File.ReadAllText(Path("theFile.txt"));
 
 			Assert.Equal("the file content", content);
-        }
+		}
 
 		[Fact]
 		public void WriteAllTextOverwritesExistingFile() {
@@ -39,5 +36,5 @@ namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite
 
 			Assert.Equal("appended", content);
 		}
-    }
+	}
 }
