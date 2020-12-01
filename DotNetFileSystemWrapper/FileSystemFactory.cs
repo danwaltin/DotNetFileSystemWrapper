@@ -2,21 +2,20 @@
 
 namespace DotNetFileSystemWrapper
 {
-	public class FileSystemFactory
-	{
+	public class FileSystemFactory {
 		public IFileSystem PhysicalFileSystem() =>
 			new PhysicalFileSystem();
 	}
 
 
-	public interface IFileSystem 
-	{
+	public interface IFileSystem  {
 		IFile File {get;}
 	}
 
 	public interface IFile {
 		bool Exists(string path);
 		void WriteAllText(string path, string contents);
+		void AppendAllText(string path, string contents);
 		string ReadAllText(string path);
 	}
 
@@ -24,19 +23,18 @@ namespace DotNetFileSystemWrapper
 	{
 		private class PhysicalFile : IFile
 		{
-			public bool Exists(string path)
-			{
-				return System.IO.File.Exists(path);
-			}
+            public bool Exists(string path) =>
+				System.IO.File.Exists(path);
 
-			public void WriteAllText(string path, string contents) {
+            public void WriteAllText(string path, string contents) => 
 				System.IO.File.WriteAllText(path, contents);
-			}
 
-			public string ReadAllText(string path) {
-				return System.IO.File.ReadAllText(path);
-			}
-		}
+            public void AppendAllText(string path, string contents) => 
+				System.IO.File.AppendAllText(path, contents);
+
+            public string ReadAllText(string path) =>
+				System.IO.File.ReadAllText(path);
+        }
 		
 		public IFile File => new PhysicalFile();
 	}
