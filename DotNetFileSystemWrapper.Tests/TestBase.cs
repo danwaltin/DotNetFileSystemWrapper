@@ -32,10 +32,13 @@ namespace DotNetFileSystemWrapper.Tests {
 		/// <summary>
 		/// Create a path relative to a root path
 		/// </summary>
-		protected string Path(string filename) =>
-			System.IO.Path.Combine(RootPath(), filename);
+		protected string Path(string p) =>
+			System.IO.Path.Combine(RootPath(), p);
 
-		protected string Path(string folder, string filename) =>
-			System.IO.Path.Combine(RootPath(), folder, filename);
+		protected string Path(string p1, string p2) =>
+			System.IO.Path.Combine(RootPath(), p1, p2);
+
+		protected string Path(string p1, string p2, string p3) =>
+			System.IO.Path.Combine(RootPath(), p1, p2, p3);
 	}
 }
