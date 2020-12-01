@@ -12,7 +12,7 @@ namespace DotNetFileSystemWrapper.Tests.File
 
         [Fact]
         public void ExistingFileShouldReturnTrue() {
-            var path = PathRelativeToRoot("file_name.txt");
+            var path = Path("file_name.txt");
             _fs.File.WriteAllText(path, "content");
             var exists = _fs.File.Exists(path);
 

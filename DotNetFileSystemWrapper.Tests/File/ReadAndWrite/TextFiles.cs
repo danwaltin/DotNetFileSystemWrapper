@@ -7,10 +7,19 @@ namespace DotNetFileSystemWrapper.Tests.File.ReadAndWrite
 		[Fact]
 		public void WriteAndReadTextContent()
 		{
-			_fs.File.WriteAllText(PathRelativeToRoot("theFile.txt"), "the file content");
-			var content = _fs.File.ReadAllText(PathRelativeToRoot("theFile.txt"));
+			_fs.File.WriteAllText(Path("theFile.txt"), "the file content");
+			var content = _fs.File.ReadAllText(Path("theFile.txt"));
 
-			Assert.True(true);
+			Assert.Equal("the file content", content);
         }
+
+		[Fact]
+		public void WriteAllTextOverwritesExistingFile() {
+			_fs.File.WriteAllText(Path("theFile.txt"), "original content");
+			_fs.File.WriteAllText(Path("theFile.txt"), "new content");
+			var content = _fs.File.ReadAllText(Path("theFile.txt"));
+
+			Assert.Equal("new content", content);
+		}
     }
 }

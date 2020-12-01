@@ -25,7 +25,10 @@ namespace DotNetFileSystemWrapper.Tests
         private void ClearRootPath() => 
 			System.IO.Directory.Delete(RootPath(), recursive: true);
 
-        protected string PathRelativeToRoot(string filename) => 
+		/// <summary>
+		/// Create a path relative to a root path
+		/// </summary>
+		protected string Path(string filename) => 
 			System.IO.Path.Combine(RootPath(), filename);
-    }
+	}
 }
