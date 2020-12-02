@@ -20,6 +20,8 @@ namespace DotNetFileSystemWrapper {
 		
 		void Delete(string path);
 		void Delete(string path, bool recursive);
+
+		IEnumerable<string> EnumerateDirectories(string path);
 	}
 
 	public interface IFile {
@@ -55,6 +57,9 @@ namespace DotNetFileSystemWrapper {
 
 			public void Delete(string path, bool recursive) =>
 				System.IO.Directory.Delete(path, recursive);
+
+			public IEnumerable<string> EnumerateDirectories(string path) =>
+				System.IO.Directory.EnumerateDirectories(path);
 		}
 
 		private class PhysicalFile : IFile {
